@@ -4,10 +4,12 @@
   "description": "Find your favorite paca with ease",
   "main": "index.js",
   "scripts": {
-    "dev": "webpack-dev-server",
+    "build-storybook": "build-storybook -o dist/storybook",
     "build": "webpack -p",
+    "dev": "webpack-dev-server",
     "storybook": "start-storybook -p 6006",
-    "build-storybook": "build-storybook -o dist/storybook"
+    "test": "jest",
+    "coveralls": "jest --coverage && cat ./coverage/lcov.info | coveralls"
   },
   "repository": {
     "type": "git",
@@ -63,5 +65,10 @@
     "webpack-cli": "^3.3.0",
     "webpack-dev-server": "^3.2.1"
   },
-  "dependencies": {}
+  "dependencies": {},
+  "jest": {
+    "setupFilesAfterEnv": [
+      "<rootDir>src/setupTests.ts"
+    ]
+  }
 }
