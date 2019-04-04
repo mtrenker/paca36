@@ -1,1 +1,0 @@
-{"version":3,"file":"main.d875339940d193e6bf05.bundle.js","sources":["webpack:///./src/components/Gallery.tsx"],"sourcesContent":["import * as React from 'react';\n\nexport const Gallery = () => (\n  <div>Gallery</div>\n);\n"],"mappings":"AAAA","sourceRoot":""}
