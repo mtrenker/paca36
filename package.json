@@ -5,7 +5,9 @@
   "main": "index.js",
   "scripts": {
     "dev": "webpack-dev-server",
-    "build": "webpack -p"
+    "build": "webpack -p",
+    "storybook": "start-storybook -p 6006",
+    "build-storybook": "build-storybook -o dist/storybook"
   },
   "repository": {
     "type": "git",
