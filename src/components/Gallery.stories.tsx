@@ -2,9 +2,18 @@ import * as React from 'react';
 
 import { storiesOf } from '@storybook/react';
 
-import { Gallery } from './Gallery';
+import { Gallery, Image } from './Gallery';
 
-storiesOf('Gallery', module)
-  .add('default', () => (
-    <Gallery />
-  ));
+storiesOf('Gallery/Overview', module)
+  .add('default', () => {
+    return (
+      <Gallery />
+    );
+  });
+
+  storiesOf('Gallery/Image', module)
+  .add('default', () => {
+    return (
+      <Image />
+    );
+  });
