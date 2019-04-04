@@ -15,9 +15,27 @@ const OPEN_IMAGE = 'paca36/OPEN_IMAGE';
 const NEXT_IMAGE = 'paca36/NEXT_IMAGE';
 const PREVIOUS_IMAGE = 'paca36/PREVIOUS_IMAGE';
 
-const images: IImage[] = [...new Array(25)].map((_, idx) => ({
-  src: `https://source.unsplash.com/80${idx % 10}x600/?alpaca`
-}));
+const images: IImage[] = [{
+  src: `https://source.unsplash.com/900x600/?alpaca`,
+},{
+  src: `https://source.unsplash.com/500x610/?alpaca`,
+},{
+  src: `https://source.unsplash.com/350x200/?alpaca`,
+},{
+  src: `https://source.unsplash.com/850x650/?alpaca`,
+},{
+  src: `https://source.unsplash.com/700x600/?alpaca`,
+},{
+  src: `https://source.unsplash.com/800x620/?alpaca`,
+},{
+  src: `https://source.unsplash.com/800x400/?alpaca`,
+},{
+  src: `https://source.unsplash.com/800x550/?alpaca`,
+},{
+  src: `https://source.unsplash.com/840x320/?alpaca`,
+},{
+  src: `https://source.unsplash.com/870x500/?alpaca`,
+},]
 
 const initalState: IState = {
   open: false,
@@ -47,7 +65,7 @@ export default function reducer(state = initalState, action: AnyAction): IState 
         selectedImage: nextImage.src
       };
     case PREVIOUS_IMAGE:
-      const previousImage = state.images[currentImageIndex + 1] || state.images[0];
+      const previousImage = state.images[currentImageIndex - 1] || state.images[state.images.length - 1];
       return {
         ...state,
         selectedImage: previousImage.src

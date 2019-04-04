@@ -45,7 +45,7 @@ export interface ISlider {
   onPrevClick?: () => void;
   onNextClick?: () => void;
   imageCount: number;
-  currentIndex: number;
+  currentIndex: number | undefined;
 };
 
 const NextButton = styled.button`
