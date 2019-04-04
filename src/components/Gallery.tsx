@@ -5,13 +5,14 @@ import styled from 'styled-components';
 // <Gallery>
 export interface IGallery {
   images: IImage[];
+  onImageClick?: (e: React.MouseEvent<HTMLImageElement>) => void;
 };
 
-export const Gallery: React.FunctionComponent<IGallery> = ({ images }) => (
+export const Gallery: React.FunctionComponent<IGallery> = ({ images, onImageClick }) => (
   <Grid>
     {images.map((image, idx) => (
       <Tile key={idx}>
-        <Image src={image.src} />
+        <Image onClick={onImageClick} src={image.src} />
       </Tile>
     ))}
   </Grid>
@@ -20,17 +21,20 @@ export const Gallery: React.FunctionComponent<IGallery> = ({ images }) => (
 
 // <Image>
 export interface IImage {
+  onClick?: (e: React.MouseEvent<HTMLImageElement>) => void;
   className?: string;
   src: string;
 };
 
-const RawImage: React.FunctionComponent<IImage> = ({ className, src }) => (
-  <img className={className} src={src} />
+const RawImage: React.FunctionComponent<IImage> = ({ onClick, className, src }) => (
+  <img onClick={onClick} className={className} src={src} />
 );
 
 export const Image = styled(RawImage)`
+  cursor: pointer;
   grid-area: image;
   width: 100%;
+  object-fit: contain;
 `;
 // </Image>
 
@@ -67,14 +71,14 @@ const RawSlider: React.FunctionComponent<ISlider> = ({
 }) => {
   return (
     <div className={className}>
-      <NextButton onClick={onPrevClick}>Previous</NextButton>
+      <PreviousButton onClick={onPrevClick}>Previous</PreviousButton>
       {image &&
         <>
           <Image src={image} />
           <Counter>{`${currentIndex + 1} / ${imageCount}`}</Counter>
         </>
       }
-      <PreviousButton onClick={onNextClick}>Next</PreviousButton>
+      <NextButton onClick={onNextClick}>Next</NextButton>
     </div>
   );
 };
@@ -120,7 +124,7 @@ interface ICloseButton {
   onClose?: () => void;
 }
 
-const RawCloseButton: React.FunctionComponent<ICloseButton> = ({children, className, onClose}) => (
+const RawCloseButton: React.FunctionComponent<ICloseButton> = ({ children, className, onClose }) => (
   <button onClick={onClose} className={className}>{children}</button>
 )
 
