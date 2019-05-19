@@ -3,6 +3,7 @@ const app = require('./package.json');
 
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const Dotenv = require('dotenv-webpack');
 
 module.exports = {
   entry: path.resolve(__dirname, 'src', 'index.tsx'),
@@ -25,7 +26,12 @@ module.exports = {
     new HtmlWebpackPlugin({
       title: app.name
     }),
+    new Dotenv(),
   ],
+
+  node: {
+    fs:'empty'
+  },
 
   devServer: {
     contentBase: path.join(__dirname, 'dist'),
