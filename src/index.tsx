@@ -4,7 +4,7 @@ import { Provider } from 'react-redux';
 import { createStore } from 'redux';
 
 import rootReducer from './redux/store';
-import { CarScreen } from './containers/Cars';
+import { Test } from './containers/Test';
 
 const store = createStore(
   rootReducer,
@@ -17,6 +17,6 @@ document.body.appendChild(mount);
 
 
 ReactDOM.render(
-  <CarScreen />,
+  <Test />,
   mount
 );
