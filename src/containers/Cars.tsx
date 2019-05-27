@@ -1,9 +1,4 @@
 import * as React from 'react';
-import { connect } from 'react-redux';
-import { Dispatch } from 'redux';
-
-import { IState } from '../redux/car';
-
 import { client } from './../contenful'
 
 interface IProps {
@@ -11,26 +6,50 @@ interface IProps {
 
 const CarScreen: React.FunctionComponent<IProps> = ({
 }) => {
+  const [pages, setPages] = React.useState([]);
   React.useEffect(() => {
-    client.getEntries().then(entries => console.log(entries.toPlainObject()))
-  });
+    client.getEntries().then(entries => {
+      console.log(entries);
+
+      const pages = entries.toPlainObject().items.filter(item => item.sys.contentType.sys.id === 'page')
+      setPages(pages as any);
+    })
+  }, []);
+  console.log(pages);
+
   return (
     <div>
-      <h1>Paca 36</h1>
-      <p>Cars</p>
+      <h1>Page Example</h1>
+      {pages.map((page: any) => {
+        for (const field in page.fields) {
+          console.log(field);
+
+          switch (field) {
+            case 'title':
+              return <p>{page.fields.title}</p>
+
+            case 'content':
+              console.log("CONTENT")
+              return page.fields.content.map((content: any) => {
+                switch (content.sys.contentType.sys.id) {
+                  case 'pageRichtext':
+                    console.log(content.fields.content)
+                    return <div dangerouslySetInnerHTML={{__html: content.fields.content}}></div>
+
+                  default:
+                    break;
+                }
+              })
+
+            default:
+              break;
+          }
+        }
+      })}
     </div>
   )
 };
 
-// Normally i would use something like reselect but normally i also wouldn't use redux for this so....
-const mapStateToProps = (state: { car: IState }): any => ({
-});
-
-const mapDispatchToProps = (dispatch: Dispatch): any => ({
-})
-
-const ConnectedCarScreen = connect(mapStateToProps, mapDispatchToProps)(CarScreen);
-
 export {
-  ConnectedCarScreen
+  CarScreen
 };

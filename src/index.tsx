@@ -4,7 +4,7 @@ import { Provider } from 'react-redux';
 import { createStore } from 'redux';
 
 import rootReducer from './redux/store';
-import { ConnectedCarScreen } from './containers/Cars';
+import { CarScreen } from './containers/Cars';
 
 const store = createStore(
   rootReducer,
@@ -17,8 +17,6 @@ document.body.appendChild(mount);
 
 
 ReactDOM.render(
-  <Provider store={store}>
-    <ConnectedCarScreen />
-  </Provider>,
+  <CarScreen />,
   mount
 );
