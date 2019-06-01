@@ -2,7 +2,7 @@
 [![Coverage Status](https://coveralls.io/repos/github/mtrenker/paca36/badge.svg?branch=master)](https://coveralls.io/github/mtrenker/paca36?branch=master)
 
 # paca36
-Find your favorite paca with ease
+Something 
 
 ## Demo
 App: https://mtrenker.github.io/paca36/
